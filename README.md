@@ -2,7 +2,7 @@
 
 To run the React application on another system:
 
-1) Clone the repository using the Git command: git clone <repository-url>.
+1) Clone the repository using the Git command: git clone [repository-url].
 2) Navigate to the project directory in the terminal or command prompt.
 3) Install project dependencies with npm install.
 4) Start the development server using npm start.
