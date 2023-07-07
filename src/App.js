@@ -9,7 +9,6 @@ const App = () => {
 
   useEffect(() => {
     fetchRandomImage();
-    updateMetaTags();
   }, []);
 
   const fetchRandomImage = () => {
@@ -17,24 +16,24 @@ const App = () => {
       .then(response => {
         setImageURL(response.url);
         setLoading(false);
+        updateMetaTags();
       })
       .catch(error => {
         console.error('Error fetching random image:', error);
         setLoading(false);
       });
   };
-const shareURL = window.location.href;
-  useEffect(() => {
-   
-  }, [imageURL]);
+
+  const shareURL = window.location.href;
+
+ 
 
   const updateMetaTags = () => {
     // Update meta tags as needed
-    // Find the <meta> element by its name attribute
-const twitterImageMeta = document.querySelector('meta[name="twitter:image"]');
-
-// Update the value of the content property
-twitterImageMeta.setAttribute('content', {imageURL});
+    const twitterImageMeta = document.querySelector('meta[name="twitter:image"]');
+    if (twitterImageMeta) {
+      twitterImageMeta.setAttribute('content', imageURL);
+    }
   };
 
   return (
@@ -56,13 +55,13 @@ twitterImageMeta.setAttribute('content', {imageURL});
                 </FacebookShareButton>
               </div>
 
-              <div className="mb-2 mr-2 bg-blue-500 hover:bg-blue-600 rounded-md text-white py-2 px-5 ">
-                <TwitterShareButton url={shareURL} title='hi'>
+              <div className="mb-2 mr-2 bg-blue-500 hover:bg-blue-600 rounded-md text-white py-2 px-5">
+                <TwitterShareButton url={shareURL} title="hi">
                   <FontAwesomeIcon icon={faTwitter} />
                 </TwitterShareButton>
               </div>
 
-              <div className=" mb-2  button bg-green-600 hover:bg-green-700 rounded-md text-white py-2 px-5">
+              <div className="mb-2 button bg-green-600 hover:bg-green-700 rounded-md text-white py-2 px-5">
                 <WhatsappShareButton url={shareURL}>
                   <FontAwesomeIcon icon={faWhatsapp} />
                 </WhatsappShareButton>
@@ -76,16 +75,3 @@ twitterImageMeta.setAttribute('content', {imageURL});
 };
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
