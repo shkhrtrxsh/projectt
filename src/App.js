@@ -22,7 +22,7 @@ const App = () => {
         setLoading(false);
       });
   };
-
+const shareURL = window.location.href;
   useEffect(() => {
     updateMetaTags();
   }, [imageURL]);
@@ -45,19 +45,19 @@ const App = () => {
 
             <div className="share-buttons flex flex-row justify-center items-center">
               <div className="mr-2 mb-2 button bg-blue-700 hover:bg-blue-800 rounded-md py-2 px-5 text-white">
-                <FacebookShareButton url={imageURL}>
+                <FacebookShareButton url={shareURL}>
                   <FontAwesomeIcon icon={faFacebookF} />
                 </FacebookShareButton>
               </div>
 
               <div className="mb-2 mr-2 bg-blue-500 hover:bg-blue-600 rounded-md text-white py-2 px-5 ">
-                <TwitterShareButton url={imageURL}>
+                <TwitterShareButton url={shareURL}>
                   <FontAwesomeIcon icon={faTwitter} />
                 </TwitterShareButton>
               </div>
 
               <div className=" mb-2  button bg-green-600 hover:bg-green-700 rounded-md text-white py-2 px-5">
-                <WhatsappShareButton url={imageURL}>
+                <WhatsappShareButton url={shareURL}>
                   <FontAwesomeIcon icon={faWhatsapp} />
                 </WhatsappShareButton>
               </div>
