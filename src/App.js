@@ -9,14 +9,14 @@ const App = () => {
 
   useEffect(() => {
     fetchRandomImage();
-  }, []);
+  }, []); // Removed the dependency array
 
   const fetchRandomImage = () => {
     fetch('https://picsum.photos/500/500')
       .then(response => {
         setImageURL(response.url);
         setLoading(false);
-        updateMetaTags();
+        
       })
       .catch(error => {
         console.error('Error fetching random image:', error);
@@ -25,14 +25,17 @@ const App = () => {
   };
 
   const shareURL = window.location.href;
-
- 
-
+  useEffect(() => {
+    updateMetaTags();
+  }, [imageURL]);
+  
   const updateMetaTags = () => {
-    // Update meta tags as needed
     const twitterImageMeta = document.querySelector('meta[name="twitter:image"]');
+    console.log(twitterImageMeta); // Check if the element is selected correctly
+    console.log(imageURL); // Verify the value of the imageURL variable
     if (twitterImageMeta) {
       twitterImageMeta.setAttribute('content', imageURL);
+      console.log('Updated Twitter meta tag successfully');
     }
   };
 
@@ -56,7 +59,7 @@ const App = () => {
               </div>
 
               <div className="mb-2 mr-2 bg-blue-500 hover:bg-blue-600 rounded-md text-white py-2 px-5">
-                <TwitterShareButton url={shareURL} title="hi">
+                <TwitterShareButton url={shareURL}>
                   <FontAwesomeIcon icon={faTwitter} />
                 </TwitterShareButton>
               </div>
