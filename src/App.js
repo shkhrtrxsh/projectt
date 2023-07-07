@@ -9,6 +9,7 @@ const App = () => {
 
   useEffect(() => {
     fetchRandomImage();
+    updateMetaTags();
   }, []);
 
   const fetchRandomImage = () => {
@@ -24,11 +25,16 @@ const App = () => {
   };
 const shareURL = window.location.href;
   useEffect(() => {
-    updateMetaTags();
+   
   }, [imageURL]);
 
   const updateMetaTags = () => {
     // Update meta tags as needed
+    // Find the <meta> element by its name attribute
+const twitterImageMeta = document.querySelector('meta[name="twitter:image"]');
+
+// Update the value of the content property
+twitterImageMeta.setAttribute('content', {imageURL});
   };
 
   return (
@@ -51,7 +57,7 @@ const shareURL = window.location.href;
               </div>
 
               <div className="mb-2 mr-2 bg-blue-500 hover:bg-blue-600 rounded-md text-white py-2 px-5 ">
-                <TwitterShareButton url={shareURL}>
+                <TwitterShareButton url={shareURL} title='hi'>
                   <FontAwesomeIcon icon={faTwitter} />
                 </TwitterShareButton>
               </div>
